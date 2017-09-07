@@ -1,0 +1,244 @@
+
+# coding: utf-8
+
+# # Homework 1  Yiming Huang
+# ## taken from Newman Chapter 2
+
+# In[10]:
+
+#1.Another ball dropped from a tower
+import numpy as np
+h=np.float(input('please input the height of the tower unit:m:'))
+g=9.8
+t=np.sqrt(2*h/g)
+print('The time takes for ball dropped from a',h ,'m tower is ',t,'s')
+
+
+# In[7]:
+
+#2. Altitude of a satellite
+import numpy as np
+t1=np.float(input('please input the period of the satellite orbit\ninput hour, munite and second seperately\ndays:'))
+t2=np.float(input('hours:'))
+t3=np.float(input('munites:'))
+t4=np.float(input('seconds:'))
+T=t1*24*3600+t2*3600+t3*60+t4
+G=6.67E-11
+M=5.97E24
+R=6371E3
+h=(G*M*T**2/(4*np.pi**2))**(1/3)-R
+print('The altitude of the satellite for period',T ,'s is ',h,'m')
+
+
+# In[27]:
+
+#3. Coordinate Transformation
+import numpy as np
+import math as math
+x=np.float(input('please input the Cartesian coordinates separately\nx:'))
+y=np.float(input('y:'))
+r=np.sqrt(x**2+y**2)
+if (x==0 and y==0):
+    print('This is the original point, r=0, and angle theta is undefined')
+else:
+    theta=math.degrees(math.atan2(y,x))
+    print('The polar coordinate radius r=',r,'\nthe angle theta=',theta,'in degree')
+
+
+# In[58]:
+
+#4. Space Travel
+import numpy as np
+x=np.float(input('please input the distance from the Earth in light years'))
+v=np.float(input('please input the speed of spaceship as a fraction of speed of light:0~1'))
+t1=x/v
+t2=t1/np.sqrt(1-v**2)
+print('Time takes in the rest fram of observer on Earth in years:',t1)
+print('Time takes as perceived by a passenger on board in years:',t2)
+
+
+# In[29]:
+
+#5. Quantum potential step
+import numpy as np
+m=9.11E-31
+E=10
+V=9
+factor=1
+k1=np.sqrt(E)
+k2=np.sqrt(E-V)
+T=4*k1*k2/(k1+k2)**2
+R=((k1-k2)/(k1+k2))**2
+print('The probabilitiy of transmission is',T,'\nThe probability of reflection is',R)
+
+
+# In[40]:
+
+#6. Planetary orbits
+import numpy as np
+l1=np.float(input('Please input the distance to the Sun and velocity at perihelion separately\ndistance:'))
+v1=np.float(input('velocity:'))
+M=1.9891E30
+G=6.6738E-11
+a1=1
+a2=-2*G*M/(v1*l1)
+a3=-(v1**2-2*G*M/l1)
+v2=(-a2-np.sqrt(a2**2-4*a1*a3))/(2*a1)
+l2=l1*v1/v2
+e=(l2-l1)/(l2+l1)
+a=1/2*(l1+l2)
+b=np.sqrt(l1*l2)
+T=2*np.pi*a*b/(l1*v1)
+print('The corresponding l2={:0.4e}'.format(l2),'m\nv2={:0.4e}'.format(v2),'m/s\nT={:0.4e}'.format(T/3600/24/365),'year')
+
+
+# In[53]:
+
+#7. Catalan numbers
+c=1.0
+i=0
+sum=0
+while (c<=1E10):
+    print(c)
+    sum=sum+c
+    c=(4*i+2)/(i+2)*c
+    i=i+1
+
+
+# In[9]:
+
+#10.1 The semi-empirical mass formula
+import numpy as np
+Z=np.float(input('Please input the atomic number Z:'))
+A=np.float(input('the mass number A:'))
+a1,a2,a3,a4=15.67,17.23,0.75,93.2
+if(A%2==1):
+    a5=0
+else:
+    a5=12.0*(-1)**Z
+B=a1*A-a2*A**(2/3)-a3*Z**2/A**(1/3)-a4*(A-2*Z)**2/A+a5/A**(1/2)
+print('The total binding energy is {:.2f}'.format(B),'Mev')
+
+
+# In[22]:
+
+#10.2 Modified program
+import numpy as np
+import math
+a1,a2,a3,a4=15.67,17.23,0.75,93.2
+Z=np.int(input('Please input the atomic number Z:'))
+A0=B0=-math.inf
+for A in range(Z,3*Z+1):
+    if(A%2==1):
+        a5=0
+    else:
+        a5=12.0*(-1)**Z
+    B=a1*A-a2*A**(2/3)-a3*Z**2/A**(1/3)-a4*(A-2*Z)**2/A+a5/A**(1/2)
+    B1=B/A  #energy per nucleon
+    if(B1>B0):
+        B0=B1
+        A0=A
+print('The mass number for the most stable nucleus with given atomic number {:d}'.format(Z),'is {:d}'.format(A0))
+print('And the binding energy per nucleon is {:.2f}'.format(B0))
+
+
+# In[28]:
+
+#10.3 Modified program
+import numpy as np
+import math
+a1,a2,a3,a4=15.67,17.23,0.75,93.2
+A0=B0=-math.inf
+for Z in range(1,101):
+    A00=B00=-math.inf
+    for A in range(Z,3*Z+1):
+        if(A%2==1):
+            a5=0
+        else:
+            a5=12.0*(-1)**Z
+        B=a1*A-a2*A**(2/3)-a3*Z**2/A**(1/3)-a4*(A-2*Z)**2/A+a5/A**(1/2)
+        B1=B/A #energy per nucleon
+        if(B1>B0):
+            B0=B1
+            A0=A
+            Z0=Z
+        if(B1>B00):
+            B00=B1
+            A00=A
+    print('The mass number for the most stable nucleus with given atomic number {:d}'.format(Z),'is {:d}'.format(A00))
+print('The atomic number with maximum binding energy per nucleon is {:d}'.format(Z0))
+
+
+# In[17]:
+
+#11.1 Binomial Coeficients
+def binomial(n,k):
+    if(n<k or n%1!=0 or k%1!=0):
+        print('input error!')
+        c=None
+    else:
+        c=1
+        if(k>0):
+            for i in range(1,k+1):
+                c=c*(n-i+1)/i
+        c=int(c)
+    return(c)
+        
+
+
+# In[81]:
+
+#11.2 Pascal's triangle
+for n in range(1,21):
+    for k in range(0,n+1):
+        print(binomial(n,k),end=' ')
+    print('')
+
+
+# In[31]:
+
+#11.3 toss a coin
+p1=binomial(100,60)/2**100
+p2=0
+for k in range(60,101):
+    p2=p2+binomial(100,k)
+p2=p2/2**100
+print(p1,p2)
+
+
+# In[61]:
+
+#12 Prime number
+import numpy as np
+prime=[2]
+for i in range(3,10001):
+    j=0
+    while(prime[j]<=np.sqrt(i) and i%prime[j]!=0 and j+1<=len(prime)):
+        j=j+1
+    if(prime[j]>np.sqrt(i)):
+        prime.append(i)
+print(len(prime))
+print(prime)
+
+
+# In[73]:
+
+#2.13 (a) Recursion
+def catalan(n):
+    if(n==0):
+        return 1
+    else:
+        return (4*n-2)/(n+1)*catalan(n-1)
+catalan(100)
+
+
+# In[78]:
+
+#2.13 (b) 
+def codivisor(m,n):
+    if(n==0):
+        return m
+    else:
+        return codivisor(n,m%n)
+codivisor(108,192)
+
