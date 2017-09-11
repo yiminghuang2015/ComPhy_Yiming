@@ -1,0 +1,51 @@
+Answers:
+
+1.
+please input the height of the tower unit:m:100
+The time takes for ball dropped from a 100.0 m tower is  4.51753951453 s
+
+2.
+The altitudes of satellite that orbit the Earth with period a day\90 minutes\45 minutes is   
+35855910.176174976 m\279321.6253728606 m\-2181559.8978108233 m
+
+I conclude that the period can't be 45 minutes or less but can be 90 and more.
+
+For period 23.93 hour, the altitude is 35773762.329895645 m. 
+Because a day is not accurately 24 hours but approximately 23.93 hours.
+The difference of altitude is 82147.84627933055m
+
+4.
+please input the distance from the Earth in light years10
+please input the speed of spaceship as a fraction of speed of light:0~10.99
+Time takes in the rest fram of observer on Earth in years: 10.1010101010101
+Time takes as perceived by a passenger on board in years: 71.6041621221
+
+5.
+The probabilitiy of transmission is 0.730126136388 
+The probability of reflection is 0.269873863612
+
+6.
+Please input the distance to the Sun and velocity at perihelion separately
+distance:8.7830E10
+velocity:5.4529E4
+The corresponding l2=5.2822e+12 m
+v2=9.0668e+02 m/s
+T=7.6082e+01 year
+
+10.
+1)
+Please input the atomic number Z:28
+the mass number A:58
+The total binding energy is 493.94 Mev
+3)
+Z=24
+
+11.
+(a) 0.010843866711637985 
+(b) 0.028443966820490392
+
+13
+(a) 8.965199470901317e+56
+(b) 12
+
+
