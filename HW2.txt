@@ -1,0 +1,65 @@
+
+# coding: utf-8
+
+# In[9]:
+
+#3.6 Deterministic chaos and the Feigenbaum plot
+import numpy as np
+import pylab
+def xprime(r,x):
+    return r*x*(1-x)
+r=np.linspace(1,4,301)
+x=np.zeros(len(r),float)
+x=x+1/2
+for j in range(1,1001):
+    #print(j)
+    for i in range(len(r)):
+        x[i]=xprime(r[i],x[i])
+    pylab.plot(r,x,'k.')
+for i in range(len(r)):
+    x[i]=(r[i]-1)/r[i]
+pylab.plot(r,x)
+pylab.show()
+
+
+# In[8]:
+
+# 4.3 Calculating derivatives
+def f(x):
+    return x*(x-1)
+def derivative(d,x0):
+    return (f(x0+d)-f(x0))/d
+x0=1;
+for i in range(1,7):
+    print(derivative(10**(-i*2-2),x0))
+
+
+# In[55]:
+
+#5.11 Plane Wave
+import sys 
+sys.path.append(r'C:\Users\yhuang1\Dropbox\Courses\Computational Physics')
+import gaussxw
+import numpy as np
+import pylab
+wl=1  #wavelength(m)
+z=3
+x=np.linspace(-5,5,1000)
+Ir=np.zeros(len(x))
+t0,w0=gaussxw.gaussxw(50)
+a=0
+for i in range(len(x)):
+    u=x[i]*np.sqrt(2/wl/z)
+    b=u
+    c,s=0,0
+    for t,w in zip(t0,w0):
+        tt=1/2*(b-a)*t+1/2*(b+a)
+        ww=1/2*(b-1)*w
+        c+=np.cos(1/2*np.pi*tt**2)*ww
+        s+=np.sin(1/2*np.pi*tt**2)*ww
+    Ir[i]=1/8*((2*c+1)**2+(2*s+1)**2)
+pylab.xlabel('x(cm)')
+pylab.ylabel('I/I0')
+pylab.plot(x,Ir)
+pylab.show()
+
