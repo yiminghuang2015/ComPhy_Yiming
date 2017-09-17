@@ -1,0 +1,15 @@
+3.6
+a) fixed point:
+The space between points becomes smaller as they approach to the fixed point.
+limit circle:
+The points overlaps to form several points and but they may not converge to some point.
+Chaos
+The points are randomly positioned. All poinstion range can be filled with points.
+b) the changing point to chaos should be the right intersection point of the hole and line x=(r-1)/r
+r is approximately 3.6
+
+4.3
+At first, accuracy gets better because the linear fit to the slope gets more precise as the 
+interval of two points gets smaller. But as the interval gets too small, the round error plays 
+a more important role to the precision.
+
